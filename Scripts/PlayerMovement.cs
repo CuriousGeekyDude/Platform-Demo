@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float valueOfDisplacement = Input.GetAxis("Horizontal");
         valueOfDisplacement *= 10f;
-        rigidBody.velocity = new Vector2(valueOfDisplacement, 0);
+        rigidBody.velocity = new Vector2(valueOfDisplacement, rigidBody.velocity.y);
             
     }
 
