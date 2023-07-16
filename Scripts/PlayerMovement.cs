@@ -5,12 +5,14 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rigidBody;
+    private Animator animator;
 
     private void Movement()
     {
         float valueOfDisplacement = Input.GetAxis("Horizontal");
         valueOfDisplacement *= 10f;
         rigidBody.velocity = new Vector2(valueOfDisplacement, rigidBody.velocity.y);
+        animator.SetFloat("SpeedOfPlayer", Mathf.Abs(valueOfDisplacement));
             
     }
 
@@ -18,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rigidBody = this.transform.GetComponent<Rigidbody2D>();
+        animator = this.transform.GetComponent<Animator>();
     }
 
     // Update is called once per frame
