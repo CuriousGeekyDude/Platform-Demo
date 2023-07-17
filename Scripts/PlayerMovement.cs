@@ -20,8 +20,18 @@ public class PlayerMovement : MonoBehaviour
         Vector2 topLeftCorner = new Vector2(minBox.x, minBox.y - 0.1f);
         Vector2 bottomRightCorner = new Vector2(maxBox.x, minBox.y - 0.5f);
         Collider2D hit = Physics2D.OverlapArea(topLeftCorner, bottomRightCorner);
+        hit = hit as BoxCollider2D;
         rigidBody.gravityScale = 9.81f;
         if(hit != null) {
+            Platform platform = hit.GetComponent<Platform>();
+
+            if(platform != null) {
+                this.transform.parent = platform.transform;
+            }
+            
+            else {
+                this.transform.parent = null;
+            }
             if(Mathf.Approximately(valueOfDisplacement, 0)) {
                 rigidBody.gravityScale = 0;
             }
@@ -30,7 +40,10 @@ public class PlayerMovement : MonoBehaviour
                 rigidBody.gravityScale = 9.81f;
                 rigidBody.AddForce(new Vector2(0, 8f), ForceMode2D.Impulse);
             }
+
+            
         }
+
             
     }
 
