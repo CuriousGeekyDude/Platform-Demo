@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rigidBody;
     private Animator animator;
+    private BoxCollider2D boxCollider;
 
     private void Movement()
     {
@@ -14,8 +15,13 @@ public class PlayerMovement : MonoBehaviour
         rigidBody.velocity = new Vector2(valueOfDisplacement, rigidBody.velocity.y);
         animator.SetFloat("SpeedOfPlayer", Mathf.Abs(valueOfDisplacement));
 
-        if(Input.GetKey(KeyCode.Space)) {
-            rigidBody.AddForce(new Vector2(0, 1.5f), ForceMode2D.Impulse);
+        Vector3 maxBox = boxCollider.bounds.max;
+        Vector3 minBox = boxCollider.bounds.min;
+        Vector2 topLeftCorner = new Vector2(minBox.x, minBox.y - 0.1f);
+        Vector2 bottomRightCorner = new Vector2(maxBox.x, minBox.y - 0.5f);
+        Collider2D hit = Physics2D.OverlapArea(topLeftCorner, bottomRightCorner);
+        if(Input.GetKey(KeyCode.Space) == true && hit != null) {
+            rigidBody.AddForce(new Vector2(0, 3f), ForceMode2D.Impulse);
         }
             
     }
@@ -25,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rigidBody = this.transform.GetComponent<Rigidbody2D>();
         animator = this.transform.GetComponent<Animator>();
+        boxCollider = this.transform.GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
