@@ -20,8 +20,16 @@ public class PlayerMovement : MonoBehaviour
         Vector2 topLeftCorner = new Vector2(minBox.x, minBox.y - 0.1f);
         Vector2 bottomRightCorner = new Vector2(maxBox.x, minBox.y - 0.5f);
         Collider2D hit = Physics2D.OverlapArea(topLeftCorner, bottomRightCorner);
-        if(Input.GetKey(KeyCode.Space) == true && hit != null) {
-            rigidBody.AddForce(new Vector2(0, 3f), ForceMode2D.Impulse);
+        rigidBody.gravityScale = 9.81f;
+        if(hit != null) {
+            if(Mathf.Approximately(valueOfDisplacement, 0)) {
+                rigidBody.gravityScale = 0;
+            }
+
+            if(Input.GetKey(KeyCode.Space)) {
+                rigidBody.gravityScale = 9.81f;
+                rigidBody.AddForce(new Vector2(0, 3f), ForceMode2D.Impulse);
+            }
         }
             
     }
