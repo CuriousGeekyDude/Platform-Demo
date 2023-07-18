@@ -10,6 +10,17 @@ public class SceneController : MonoBehaviour
     private GameObject[] clonedPlatforms = new GameObject[2];
 
 
+    private void DestroyPlatforms()
+    {
+        float posCameraMinY = mainCamera.pixelRect.yMin;
+        float posCameraMaxY = mainCamera.pixelRect.yMax;
+        for(int i = 0; i < 2; ++i) {
+            if( posCameraMaxY < clonedPlatforms[i].tranform.position.y || clonedPlatforms[i].tranform.position.y < posCameraMinY) {
+                Destroy(clonedPlatforms[i]);
+            }
+        }
+    }
+
     private void PositionPlatforms()
     {
         float positionPlayerY = player.transform.position.y;
