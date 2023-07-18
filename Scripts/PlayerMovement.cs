@@ -8,7 +8,11 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private BoxCollider2D boxCollider;
 
-    public bool isOnPlatform = false;
+
+    public void NullifyParent()
+    {
+        this.transform.parent = null;
+    }
     private void Movement()
     {
         float valueOfDisplacement = Input.GetAxis("Horizontal");
@@ -32,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
             }
             
             else {
-                this.transform.parent = null;
+                NullifyParent();
             }
             if(Mathf.Approximately(valueOfDisplacement, 0)) {
                 rigidBody.gravityScale = 0;
