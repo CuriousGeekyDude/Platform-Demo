@@ -5,7 +5,7 @@ using UnityEngine;
 public class SceneController : MonoBehaviour
 {
     [SerializeField] private PlayerMovement player;
-    [SerializeField] private GameObject platformBluePrint;
+    [SerializeField] private Platform platformBluePrint;
     [SerializeField] private Camera mainCamera;
     private Platform[] clonedPlatforms = new Platform[2];
 
@@ -38,8 +38,9 @@ public class SceneController : MonoBehaviour
     {
         for(int i = 0; i < 2; ++i) {
             if(clonedPlatforms[i] == null) {
-                clonedPlatforms[i] = Instantiate(platformBluePrint) as GameObject;
+                clonedPlatforms[i] = Instantiate(platformBluePrint) as Platform;
                 PositionPlatforms(i);
+                clonedPlatforms[i].platformID = i;
             }
         }
     }
