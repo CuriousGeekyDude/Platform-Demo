@@ -22,12 +22,16 @@ public class SceneController : MonoBehaviour
         }
     }
 
-    private void PositionPlatforms()
+    private void PositionPlatforms(int indexOfClonedPlatform)
     {
         float positionPlayerY = player.transform.position.y;
         float positionPlayerX = player.transform.position.x;
-        clonedPlatforms[0].transform.position = new Vector3(positionPlayerX+Random.Range(-5f, 5f), positionPlayerY-5f, player.transform.position.z);
-        clonedPlatforms[1].transform.position = new Vector3(positionPlayerX+Random.Range(-5f, 5f), positionPlayerY+5f, player.transform.position.z);
+        if(indexOfClonedPlatform == 0) {
+            clonedPlatforms[0].transform.position = new Vector3(positionPlayerX+Random.Range(-5f, 5f), positionPlayerY-5f, player.transform.position.z);
+        }
+        else {
+            clonedPlatforms[1].transform.position = new Vector3(positionPlayerX+Random.Range(-5f, 5f), positionPlayerY+5f, player.transform.position.z);
+        }
     }
 
     private void SpawnPlatforms()
