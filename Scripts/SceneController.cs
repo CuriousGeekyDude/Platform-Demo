@@ -39,6 +39,7 @@ public class SceneController : MonoBehaviour
         for(int i = 0; i < 2; ++i) {
             if(clonedPlatforms[i] == null) {
                 clonedPlatforms[i] = Instantiate(platformBluePrint) as GameObject;
+                PositionPlatforms(i);
             }
         }
     }
