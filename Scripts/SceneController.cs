@@ -16,6 +16,7 @@ public class SceneController : MonoBehaviour
         float posCameraMinY = mainCamera.ViewportToWorldPoint(new Vector3(1f, 0, mainCamera.nearClipPlane)).y;
         for(int i = 0; i < 2; ++i) {
             if(posCameraMaxY < clonedPlatforms[i].transform.position.y || clonedPlatforms[i].transform.position.y < posCameraMinY) {
+                player = null;
                 Destroy(clonedPlatforms[i]);
                 clonedPlatforms[i] = null;
             }
@@ -40,7 +41,6 @@ public class SceneController : MonoBehaviour
             if(clonedPlatforms[i] == null) {
                 clonedPlatforms[i] = Instantiate(platformBluePrint) as Platform;
                 PositionPlatforms(i);
-                clonedPlatforms[i].platformID = i;
             }
         }
     }
