@@ -6,7 +6,7 @@ public class SceneController : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject platformBluePrint;
-    [SerializeField] private GameObject mainCamera;
+    [SerializeField] private Camera mainCamera;
     private GameObject[] clonedPlatforms = new GameObject[2];
 
 
@@ -15,7 +15,7 @@ public class SceneController : MonoBehaviour
         float posCameraMinY = mainCamera.pixelRect.yMin;
         float posCameraMaxY = mainCamera.pixelRect.yMax;
         for(int i = 0; i < 2; ++i) {
-            if( posCameraMaxY < clonedPlatforms[i].tranform.position.y || clonedPlatforms[i].tranform.position.y < posCameraMinY) {
+            if(posCameraMaxY < clonedPlatforms[i].transform.position.y || clonedPlatforms[i].transform.position.y < posCameraMinY) {
                 Destroy(clonedPlatforms[i]);
             }
         }
