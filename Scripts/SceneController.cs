@@ -30,6 +30,14 @@ public class SceneController : MonoBehaviour
         clonedPlatforms[1].transform.position = new Vector3(positionPlayerX+Random.Range(-5f, 5f), positionPlayerY+5f, player.transform.position.z);
     }
 
+    private void SpawnPlatforms()
+    {
+        for(int i = 0; i < 2; ++i) {
+            if(clonedPlatforms[i] == null) {
+                clonedPlatforms[i] = Instantiate(platformBluePrint) as GameObject;
+            }
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
