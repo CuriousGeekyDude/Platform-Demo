@@ -6,6 +6,7 @@ public class SceneController : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject platformBluePrint;
+    [SerializeField] private GameObject mainCamera;
     private GameObject[] clonedPlatforms = new GameObject[2];
 
 
