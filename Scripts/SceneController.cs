@@ -5,10 +5,9 @@ using UnityEngine;
 public class SceneController : MonoBehaviour
 {
     [SerializeField] private PlayerMovement player;
-    [SerializeField] private Platform platformBluePrint;
+    [SerializeField] private GameObject platformBluePrint;
     [SerializeField] private Camera mainCamera;
-    private Platform[] clonedPlatforms = new Platform[2];
-
+    private GameObject[] clonedPlatforms = new GameObject[2];
 
     private void DestroyPlatforms()
     {
@@ -16,8 +15,8 @@ public class SceneController : MonoBehaviour
         float posCameraMinY = mainCamera.ViewportToWorldPoint(new Vector3(1f, 0, mainCamera.nearClipPlane)).y;
         for(int i = 0; i < 2; ++i) {
             if(posCameraMaxY < clonedPlatforms[i].transform.position.y || clonedPlatforms[i].transform.position.y < posCameraMinY) {
-                player = null;
-                Destroy(clonedPlatforms[i]);
+                player.NullifyParent();
+                DestroyImmediate(clonedPlatforms[i]);
                 clonedPlatforms[i] = null;
             }
         }
@@ -39,7 +38,7 @@ public class SceneController : MonoBehaviour
     {
         for(int i = 0; i < 2; ++i) {
             if(clonedPlatforms[i] == null) {
-                clonedPlatforms[i] = Instantiate(platformBluePrint) as Platform;
+                clonedPlatforms[i] = Instantiate(platformBluePrint) as GameObject;
                 PositionPlatforms(i);
             }
         }
