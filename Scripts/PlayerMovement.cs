@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private BoxCollider2D boxCollider;
 
+    public bool isOnPlatform = false;
     private void Movement()
     {
         float valueOfDisplacement = Input.GetAxis("Horizontal");
@@ -26,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
             Platform platform = hit.GetComponent<Platform>();
 
             if(platform != null) {
+                isOnPlatform = true;
                 this.transform.parent = platform.transform;
             }
             
@@ -38,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
             if(Input.GetKey(KeyCode.Space)) {
                 rigidBody.gravityScale = 9.81f;
-                rigidBody.AddForce(new Vector2(0, 8f), ForceMode2D.Impulse);
+                rigidBody.AddForce(new Vector2(0, 7f), ForceMode2D.Impulse);
             }
 
             
