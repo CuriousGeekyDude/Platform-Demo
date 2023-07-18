@@ -27,10 +27,10 @@ public class SceneController : MonoBehaviour
         float positionPlayerY = player.transform.position.y;
         float positionPlayerX = player.transform.position.x;
         if(indexOfClonedPlatform == 0) {
-            clonedPlatforms[0].transform.position = new Vector3(positionPlayerX+Random.Range(-5f, 5f), positionPlayerY-5f, player.transform.position.z);
+            clonedPlatforms[0].transform.position = new Vector3(positionPlayerX+Random.Range(-30f, 15f), positionPlayerY-5f, player.transform.position.z);
         }
         else {
-            clonedPlatforms[1].transform.position = new Vector3(positionPlayerX+Random.Range(-5f, 5f), positionPlayerY+5f, player.transform.position.z);
+            clonedPlatforms[1].transform.position = new Vector3(positionPlayerX+Random.Range(-30f, 15f), positionPlayerY+5f, player.transform.position.z);
         }
     }
 
