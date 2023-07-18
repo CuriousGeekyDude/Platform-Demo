@@ -17,6 +17,7 @@ public class SceneController : MonoBehaviour
         for(int i = 0; i < 2; ++i) {
             if(posCameraMaxY < clonedPlatforms[i].transform.position.y || clonedPlatforms[i].transform.position.y < posCameraMinY) {
                 Destroy(clonedPlatforms[i]);
+                clonedPlatforms[i] = null;
             }
         }
     }
