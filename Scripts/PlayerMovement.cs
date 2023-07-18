@@ -31,7 +31,6 @@ public class PlayerMovement : MonoBehaviour
             Platform platform = hit.GetComponent<Platform>();
 
             if(platform != null) {
-                isOnPlatform = true;
                 this.transform.parent = platform.transform;
             }
             
