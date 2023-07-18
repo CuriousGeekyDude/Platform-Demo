@@ -12,8 +12,8 @@ public class SceneController : MonoBehaviour
 
     private void DestroyPlatforms()
     {
-        float posCameraMinY = mainCamera.pixelRect.yMin;
-        float posCameraMaxY = mainCamera.pixelRect.yMax;
+        float posCameraMaxY = mainCamera.ViewportToWorldPoint(new Vector3(1f, 1f, mainCamera.nearClipPlane)).y;
+        float posCameraMinY = mainCamera.ViewportToWorldPoint(new Vector3(1f, 0, mainCamera.nearClipPlane)).y;
         for(int i = 0; i < 2; ++i) {
             if(posCameraMaxY < clonedPlatforms[i].transform.position.y || clonedPlatforms[i].transform.position.y < posCameraMinY) {
                 Destroy(clonedPlatforms[i]);
@@ -52,6 +52,7 @@ public class SceneController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        SpawnPlatforms();
+        DestroyPlatforms();   
     }
 }
