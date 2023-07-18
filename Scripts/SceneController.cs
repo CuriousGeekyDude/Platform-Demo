@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class SceneController : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
+    [SerializeField] private PlayerMovement player;
     [SerializeField] private GameObject platformBluePrint;
     [SerializeField] private Camera mainCamera;
-    private GameObject[] clonedPlatforms = new GameObject[2];
+    private Platform[] clonedPlatforms = new Platform[2];
 
 
     private void DestroyPlatforms()
