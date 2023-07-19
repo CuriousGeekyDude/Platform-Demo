@@ -10,17 +10,11 @@ public class SceneController : MonoBehaviour
     private GameObject[] clonedPlatforms = new GameObject[2];
     private int indexOfMarkedPlatform;
 
-    private void DestroyPlatforms()
+    private void DestroyPlatforms(int indexOfPlatformToDestroy)
     {
-        float posCameraMaxY = mainCamera.ViewportToWorldPoint(new Vector3(1f, 1f, mainCamera.nearClipPlane)).y;
-        float posCameraMinY = mainCamera.ViewportToWorldPoint(new Vector3(1f, 0, mainCamera.nearClipPlane)).y;
-        for(int i = 0; i < 2; ++i) {
-            if(posCameraMaxY < clonedPlatforms[i].transform.position.y || clonedPlatforms[i].transform.position.y < posCameraMinY) {
-                player.NullifyParent();
-                DestroyImmediate(clonedPlatforms[i]);
-                clonedPlatforms[i] = null;
-            }
-        }
+        player.NullifyParent();
+        DestroyImmediate(clonedPlatforms[indexOfPlatformToDestroy]);
+        clonedPlatforms[indexOfPlatformToDestroy] = null;
     }
 
     private void PositionPlatforms(int indexOfClonedPlatform)
@@ -38,9 +32,15 @@ public class SceneController : MonoBehaviour
         if(platformStandingOn.isOnPlatform) {
             switch(indexOfMarkedPlatform) {
                 case 0:
+                    if(clonedPlatforms[1] != null) {
+                        DestroyPlatforms(1);
+                    }
                     ++indexOfMarkedPlatform;
                     break;
                 case 1:
+                    if(clonedPlatforms[0] != null) {
+                        DestroyPlatforms(0);
+                    }
                     indexOfMarkedPlatform = 0;
                     break;
             }
@@ -60,6 +60,5 @@ public class SceneController : MonoBehaviour
     void Update()
     {
         SpawnPlatforms();
-        DestroyPlatforms();   
     }
 }
