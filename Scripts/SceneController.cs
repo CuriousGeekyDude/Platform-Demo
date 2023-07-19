@@ -27,12 +27,8 @@ public class SceneController : MonoBehaviour
     {
         float positionPlayerY = player.transform.position.y;
         float positionPlayerX = player.transform.position.x;
-        if(indexOfClonedPlatform == 0) {
-            clonedPlatforms[0].transform.position = new Vector3(positionPlayerX+Random.Range(-30f, 15f), positionPlayerY-5f, player.transform.position.z);
-        }
-        else {
-            clonedPlatforms[1].transform.position = new Vector3(positionPlayerX+Random.Range(-30f, 15f), positionPlayerY+5f, player.transform.position.z);
-        }
+        
+        clonedPlatforms[indexOfClonedPlatform].transform.position = new Vector3(positionPlayerX+Random.Range(-30f, 15f), positionPlayerY+4f, player.transform.position.z);
     }
 
     private void SpawnPlatforms()
