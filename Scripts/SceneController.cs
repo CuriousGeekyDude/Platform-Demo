@@ -38,23 +38,29 @@ public class SceneController : MonoBehaviour
 
     private void SpawnPlatforms()
     {
-        Platform platformStandingOn = clonedPlatforms[indexOfMarkedPlatform].GetComponent<Platform>();
+        if(clonedPlatforms[indexOfMarkedPlatform] != null) {
+            Platform platformStandingOn = clonedPlatforms[indexOfMarkedPlatform].GetComponent<Platform>();
 
-        if(platformStandingOn.isOnPlatform) {
-            switch(indexOfMarkedPlatform) {
-                case 0:
-                    if(clonedPlatforms[1] != null) {
-                        DestroyPlatforms(1);
-                    }
-                    ++indexOfMarkedPlatform;
-                    break;
-                case 1:
-                    if(clonedPlatforms[0] != null) {
-                        DestroyPlatforms(0);
-                    }
-                    indexOfMarkedPlatform = 0;
-                    break;
+            if(platformStandingOn.isOnPlatform) {
+                switch(indexOfMarkedPlatform) {
+                    case 0:
+                        if(clonedPlatforms[1] != null) {
+                            DestroyPlatforms(1);
+                        }
+                        ++indexOfMarkedPlatform;
+                        break;
+                    case 1:
+                        if(clonedPlatforms[0] != null) {
+                            DestroyPlatforms(0);
+                        }
+                        indexOfMarkedPlatform = 0;
+                        break;
+                }
+                clonedPlatforms[indexOfMarkedPlatform] = Instantiate(platformBluePrint) as GameObject;
+                PositionPlatforms(indexOfMarkedPlatform);
             }
+        }
+        else {
             clonedPlatforms[indexOfMarkedPlatform] = Instantiate(platformBluePrint) as GameObject;
             PositionPlatforms(indexOfMarkedPlatform);
         }
@@ -62,9 +68,7 @@ public class SceneController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        indexOfMarkedPlatform = 0;
-        clonedPlatforms[indexOfMarkedPlatform] = Instantiate(platformBluePrint) as GameObject;
-        PositionPlatforms(indexOfMarkedPlatform);
+        
     }
 
     // Update is called once per frame
