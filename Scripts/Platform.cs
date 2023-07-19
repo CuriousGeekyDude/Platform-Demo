@@ -5,6 +5,7 @@ using UnityEngine;
 public class Platform : MonoBehaviour
 {
     private int directionOfMovement = 1;
+    public bool isOnPlatform {get; set;} = false;
     private void Movement()
     {
         float posX = this.transform.position.x;
