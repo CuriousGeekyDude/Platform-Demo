@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
             if(Input.GetKey(KeyCode.Space)) {
                 rigidBody.gravityScale = 9.81f;
-                rigidBody.AddForce(new Vector2(0, 12f), ForceMode2D.Impulse);
+                rigidBody.AddForce(new Vector2(0, 8f), ForceMode2D.Impulse);
                 if(platform != null) {
                     platform.isOnPlatform = false;
                 }
