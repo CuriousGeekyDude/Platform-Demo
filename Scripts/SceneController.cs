@@ -7,13 +7,13 @@ public class SceneController : MonoBehaviour
     [SerializeField] private PlayerMovement player;
     [SerializeField] private GameObject platformBluePrint;
     [SerializeField] private Camera mainCamera;
-    private GameObject[] clonedPlatforms = new GameObject[5];
+    private GameObject[] clonedPlatforms = new GameObject[2];
 
     private void DestroyPlatforms()
     {
         float posCameraMaxY = mainCamera.ViewportToWorldPoint(new Vector3(1f, 1f, mainCamera.nearClipPlane)).y;
         float posCameraMinY = mainCamera.ViewportToWorldPoint(new Vector3(1f, 0, mainCamera.nearClipPlane)).y;
-        for(int i = 0; i < 5; ++i) {
+        for(int i = 0; i < 2; ++i) {
             if(posCameraMaxY < clonedPlatforms[i].transform.position.y || clonedPlatforms[i].transform.position.y < posCameraMinY) {
                 player.NullifyParent();
                 DestroyImmediate(clonedPlatforms[i]);
