@@ -17,6 +17,17 @@ public class SceneController : MonoBehaviour
         clonedPlatforms[indexOfPlatformToDestroy] = null;
     }
 
+    private void ResetPlatforms()
+    {
+        float posCameraMaxY = mainCamera.ViewportToWorldPoint(new Vector3(1f, 1f, mainCamera.nearClipPlane)).y;
+
+        if(posCameraMaxY < clonedPlatforms[indexOfMarkedPlatform].transform.position.y) {
+            for(int i = 0; i < 2; ++i) {
+                DestroyPlatforms(i);   
+            }
+            indexOfMarkedPlatform = 0;
+        }
+    }
     private void PositionPlatforms(int indexOfClonedPlatform)
     {
         float positionPlayerY = player.transform.position.y;
@@ -60,5 +71,6 @@ public class SceneController : MonoBehaviour
     void Update()
     {
         SpawnPlatforms();
+        ResetPlatforms();
     }
 }
