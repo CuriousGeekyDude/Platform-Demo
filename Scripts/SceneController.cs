@@ -37,17 +37,27 @@ public class SceneController : MonoBehaviour
 
     private void SpawnPlatforms()
     {
-        for(int i = 0; i < 2; ++i) {
-            if(clonedPlatforms[i] == null) {
-                clonedPlatforms[i] = Instantiate(platformBluePrint) as GameObject;
-                PositionPlatforms(i);
+        Platform platformStandingOn = clonedPlatforms[indexOfMarkedPlatform].GetComponent<Platform>();
+
+        if(platformStandingOn.isOnPlatform) {
+            switch(indexOfMarkedPlatform) {
+                case 0:
+                    ++indexOfMarkedPlatform;
+                    break;
+                case 1:
+                    indexOfMarkedPlatform = 0;
+                    break;
             }
+            clonedPlatforms[indexOfMarkedPlatform] = Instantiate(platformBluePrint) as GameObject;
+            PositionPlatforms(indexOfMarkedPlatform);
         }
     }
     // Start is called before the first frame update
     void Start()
     {
-        
+        indexOfMarkedPlatform = 0;
+        clonedPlatforms[indexOfMarkedPlatform] = Instantiate(platformBluePrint) as GameObject;
+        PositionPlatforms(indexOfMarkedPlatform);
     }
 
     // Update is called once per frame
