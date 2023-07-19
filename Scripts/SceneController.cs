@@ -8,6 +8,7 @@ public class SceneController : MonoBehaviour
     [SerializeField] private GameObject platformBluePrint;
     [SerializeField] private Camera mainCamera;
     private GameObject[] clonedPlatforms = new GameObject[2];
+    private int indexOfMarkedPlatform;
 
     private void DestroyPlatforms()
     {
