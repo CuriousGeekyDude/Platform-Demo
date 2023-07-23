@@ -1,7 +1,7 @@
 # Platform-Demo
 
 ## About
-This is a primitve platformer demo. It only supports walking, jumping on platforms, and not sliding down the slope.
+This is a primitve platformer demo. It only supports walking, jumping on platforms, not sliding down the slope, and the main camera smoothly following the player.
 
 ### Gameplay mechanics
 The character's movements are managed by the animator. In order to avoid sliding down the slope, I had to turn gravity off when the character
