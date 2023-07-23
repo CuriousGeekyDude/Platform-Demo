@@ -4,8 +4,8 @@
 This is a primitve platformer demo. It only supports walking, jumping on platforms, not sliding down the slope, and the main camera smoothly following the player.
 
 ### Gameplay mechanics
-The character's movements are managed by the animator. In order to avoid sliding down the slope, I had to turn gravity off when the character
-is still on the ground and no space has been pressed. The player moves by the right and left arrow keys. It jumps using the space key. The 
+The character's movements are managed by the animator. In order to avoid sliding down the slope, I had to turn off the gravity when the character
+is still on the ground and no space key has been pressed. The player moves by the right and left arrow keys. It jumps using the space key. The 
 demo does not support double jumps. There will always be a platform above the player. The moment you land on one of these, a new platform 
 is spawned above you. There will be at most 2 platforms at a time in the game. A platform is only destroyed under 2 conditions: 1) You 
 successfully land on the platform above it. 2) The platform goes out of the frame of the camera that follows the player. The following are 
